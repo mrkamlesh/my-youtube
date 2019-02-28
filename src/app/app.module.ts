@@ -8,8 +8,18 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
+import { TrendingPage } from '../pages/trending/trending';
+import { SubscriptionsPage } from '../pages/subscriptions/subscriptions';
+import { InboxPage } from '../pages/inbox/inbox';
+import { LibraryPage } from '../pages/library/library';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { AccountPage } from '../pages/account/account';
+
+import { YtProvider } from '../providers/yt/yt';
+import { HttpModule } from '@angular/http';
+import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 
 @NgModule({
   declarations: [
@@ -17,11 +27,17 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    TrendingPage,
+    SubscriptionsPage,
+    InboxPage,
+    LibraryPage,
+    AccountPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -29,12 +45,19 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    TrendingPage,
+    SubscriptionsPage,
+    InboxPage,
+    LibraryPage,
+    AccountPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    YtProvider,
+    YoutubeVideoPlayer
   ]
 })
 export class AppModule {}

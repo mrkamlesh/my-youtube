@@ -1,5 +1,7 @@
 {
   "name": "myYoutube",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

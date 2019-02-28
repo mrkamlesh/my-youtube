@@ -1,17 +1,43 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <button ion-button icon-only color="youtube">
+        <ion-icon name="logo-youtube"></ion-icon><span class="icon-lable">YouTube</span>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button icon-only color="dark">
+        <ion-icon name="videocam"></ion-icon>
+      </button>
+      <button ion-button icon-only color="dark">
+        <ion-icon name="search"></ion-icon>
+      </button>
+      <button ion-button icon-only color="dark" (click)="presentAccount()">
+        <ion-icon name="person"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <ion-list no-padding>
+    <button ion-item *ngFor="let list of playlists | async" (click)="openPlaylist(list.id)">
+      <ion-thumbnail item-start>
+        <img [src]="list.snippet.thumbnails.standard.url">
+      </ion-thumbnail>
+      <h2>{{ list.snippet.title }}</h2>
+      <p>{{ list.snippet.publishedAt | date:'short' }}</p>
+    </button>
+  </ion-list>
+
+  <ion-list>
+    <button ion-item *ngFor="let video of videos | async" (click)="openVideo(video)" detail-none>
+      <ion-thumbnail item-start>
+        <img [src]="video.snippet.thumbnails.standard.url">
+      </ion-thumbnail>
+      <h2>{{ video.snippet.title }}</h2>
+      <p>{{ video.snippet.description }}</p>
+    </button>
+  </ion-list>
+  <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/O17OWyx08Cg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
 </ion-content>
